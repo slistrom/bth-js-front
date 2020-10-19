@@ -1,7 +1,15 @@
 import React from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 import logo from './images/logo192.png';
 import './normalize.css';
 import './App.css';
+import Home from './components/Home';
+import Login from './components/Login';
 
 function App() {
     return (
@@ -11,11 +19,15 @@ function App() {
                 <h1 className="heading">One Place</h1>
             </div>
             <div className="content">
-                <div className="menu leftmenu">Stuff</div>
+                <div className="menu leftmenu">
+                    <p><Link to="/">Home</Link></p>
+                    <p><Link to="/login">Login</Link></p>
+                </div>
                 <div className="article">
-                    <p>
-                      This is a start
-                    </p>
+                    <Switch>
+                        <Route path="/" component={Home} exact />
+                        <Route path="/login" component={Login} />
+                    </Switch>
                 </div>
             </div>
             <div className="footer">Copywrite One Place</div>
