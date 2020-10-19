@@ -1,47 +1,38 @@
 import React, {Component} from 'react';
-import {Link} from "react-router-dom";
-import auth from "./auth.js";
 
-class Login extends Component {
+class Register extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
             email: '',
             pass: '',
-            loginmsg: '',
         };
     }
 
     mySubmitHandler = (event) => {
         event.preventDefault();
-        const API = 'http://localhost:1339/login/';
+        const API = 'http://localhost:1339/register/';
         let payload={
             "email":this.state.email,
             "password":this.state.pass
         }
-
         fetch(API, {
-            method: 'POST',
+            method: 'POST', // or 'PUT'
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(payload),
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data.data) {
-                this.setState({loginmsg: `<span class="okmsg">${data.data.message}</span>`});
-                auth.token = data.data.token;
-                // console.log(auth.token);
-            }
-            if (data.errors) {
-                this.setState({loginmsg: `<span class="errmsg">${data.errors.detail}`});
-            }
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                this.props.history.push('/login');
+
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
     }
 
     myChangeHandler = (event) => {
@@ -53,8 +44,7 @@ class Login extends Component {
     render() {
         return (
             <main>
-                <p dangerouslySetInnerHTML={{__html: this.state.loginmsg}}></p>
-                <h3>Login</h3>
+                <h3>User registration</h3>
                 <form onSubmit={this.mySubmitHandler}>
                     <p>Enter your email:</p>
                     <input
@@ -74,14 +64,11 @@ class Login extends Component {
                     <input
                         className='button'
                         type='submit'
-                        value='Login'
                     />
                 </form>
-                <p></p>
-                <Link className='button' to="/register/">Register new user</Link>
-            </main>
+        </main>
         );
     }
 }
 
-export default Login;
+export default Register;

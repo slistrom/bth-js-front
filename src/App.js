@@ -10,6 +10,7 @@ import './normalize.css';
 import './App.css';
 import Home from './components/Home';
 import Login from './components/Login';
+import Register from './components/Register';
 
 function App() {
     return (
@@ -27,6 +28,7 @@ function App() {
                     <Switch>
                         <Route path="/" component={Home} exact />
                         <Route path="/login" component={Login} />
+                        <Route path="/register" component={Register} />
                     </Switch>
                 </div>
             </div>
