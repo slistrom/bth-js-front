@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
+// import { withRouter } from "react-router";
 import auth from "./auth.js";
 
 class Login extends Component {
@@ -15,7 +16,8 @@ class Login extends Component {
 
     mySubmitHandler = (event) => {
         event.preventDefault();
-        const API = 'http://localhost:1339/login/';
+        // const API = 'http://localhost:1339/login/';
+        const API = 'https://trading-api.listrom.me/login/';
         let payload={
             "email":this.state.email,
             "password":this.state.pass
@@ -50,37 +52,55 @@ class Login extends Component {
         this.setState({[nam]: val});
     }
 
+    myLogoutHandler = () =>  {
+        auth.token = "";
+        this.setState({loginmsg: ''});
+        this.props.history.push('/login');
+    }
+
     render() {
-        return (
-            <main>
-                <p dangerouslySetInnerHTML={{__html: this.state.loginmsg}}></p>
-                <h3>Login</h3>
-                <form onSubmit={this.mySubmitHandler}>
-                    <p>Enter your email:</p>
-                    <input
-                        type='text'
-                        name='email'
-                        required
-                        onChange={this.myChangeHandler}
-                    />
-                    <p>Enter your password:</p>
-                    <input
-                        type='text'
-                        name='pass'
-                        required
-                        onChange={this.myChangeHandler}
-                    />
+        if(auth.token) {
+            return (
+                <main>
+                    <p>You are currently logged in.</p>
+                    <button className="button" onClick={this.myLogoutHandler}>
+                        Logout
+                    </button>
+                </main>
+            );
+        } else {
+            return (
+                <main>
+                    <p dangerouslySetInnerHTML={{__html: this.state.loginmsg}}></p>
+                    <h3>Login</h3>
+                    <form onSubmit={this.mySubmitHandler}>
+                        <p>Enter your email:</p>
+                        <input
+                            type='text'
+                            name='email'
+                            required
+                            onChange={this.myChangeHandler}
+                        />
+                        <p>Enter your password:</p>
+                        <input
+                            type='text'
+                            name='pass'
+                            required
+                            onChange={this.myChangeHandler}
+                        />
+                        <p></p>
+                        <input
+                            className='button'
+                            type='submit'
+                            value='Login'
+                        />
+                    </form>
                     <p></p>
-                    <input
-                        className='button'
-                        type='submit'
-                        value='Login'
-                    />
-                </form>
-                <p></p>
-                <Link className='button' to="/register/">Register new user</Link>
-            </main>
-        );
+                    <Link className='button' to="/register/">Register new user</Link>
+                </main>
+            );
+        }
+
     }
 }
 

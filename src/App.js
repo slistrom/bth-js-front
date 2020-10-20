@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  BrowserRouter as Router,
   Switch,
   Route,
   Link
@@ -9,6 +8,8 @@ import logo from './images/logo192.png';
 import './normalize.css';
 import './App.css';
 import Home from './components/Home';
+import Trading from './components/Trading';
+import Account from './components/Account';
 import Login from './components/Login';
 import Register from './components/Register';
 
@@ -22,11 +23,15 @@ function App() {
             <div className="content">
                 <div className="menu leftmenu">
                     <p><Link to="/">Home</Link></p>
+                    <p><Link to="/trading">Buy stuff</Link></p>
+                    <p><Link to="/account">My account</Link></p>
                     <p><Link to="/login">Login</Link></p>
                 </div>
                 <div className="article">
                     <Switch>
                         <Route path="/" component={Home} exact />
+                        <Route path="/trading" component={Trading} />
+                        <Route path="/account" component={Account} />
                         <Route path="/login" component={Login} />
                         <Route path="/register" component={Register} />
                     </Switch>
