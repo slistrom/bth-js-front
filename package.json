@@ -14,7 +14,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "mocha test/*.js",
+    "mocha": "mocha test/*.js",
+    "test": "start-server-and-test start-server http://localhost:3000 mocha",
+    "eslint": "eslint .",
     "eject": "react-scripts eject",
     "start-server": "npm start",
     "ci": "start-server-and-test start-server http://localhost:3000 test",
@@ -36,8 +38,10 @@
     ]
   },
   "devDependencies": {
+    "eslint-plugin-react": "^7.21.5",
     "geckodriver": "^1.20.0",
     "http-server": "^0.12.3",
+    "javascript-style-guide": "^1.0.1",
     "mocha": "^8.2.0",
     "selenium-webdriver": "^3.6.0",
     "start-server-and-test": "^1.11.5"

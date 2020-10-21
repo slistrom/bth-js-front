@@ -34,7 +34,6 @@ function assertH3(target) {
 
 // Test suite
 test.describe("Trading frontend", function() {
-
     this.timeout(0);
 
     beforeEach(function(done) {
@@ -44,9 +43,6 @@ test.describe("Trading frontend", function() {
             .forBrowser('firefox')
             .build();
 
-        // Production
-        // browser.get("https://trading.listrom.me/");
-        // Development
         browser.get("http://localhost:3000/");
         done();
     });
@@ -59,7 +55,6 @@ test.describe("Trading frontend", function() {
 
     // Usecase 1
     test.it("Test index title", function(done) {
-
         browser.getTitle().then(function(title) {
             assert.equal(title, "One Place trading");
         });
@@ -89,5 +84,4 @@ test.describe("Trading frontend", function() {
 
         done();
     });
-
 });
