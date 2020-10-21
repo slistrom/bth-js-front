@@ -12,7 +12,7 @@ class Register extends Component {
 
     mySubmitHandler = (event) => {
         event.preventDefault();
-        const API = 'http://localhost:1339/register/';
+        const API = 'https://trading-api.listrom.me/register/';
         let payload={
             "email":this.state.email,
             "password":this.state.pass

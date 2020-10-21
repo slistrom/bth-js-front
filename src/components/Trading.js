@@ -2,7 +2,10 @@ import React from 'react';
 
 function Trading() {
     return (
-        <p>This is where you buy stuff!</p>
+        <main>
+            <h3>Trading</h3>
+            <p>This is where you buy stuff!</p>
+        </main>
     )
 }
 
