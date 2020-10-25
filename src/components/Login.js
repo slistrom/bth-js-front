@@ -3,6 +3,14 @@ import {Link} from "react-router-dom";
 // import { withRouter } from "react-router";
 import auth from "./auth.js";
 
+let API;
+
+if (process.env.NODE_ENV === 'development') {
+    API = 'http://localhost:1339/login/';
+} else {
+    API = 'https://trading-api.listrom.me/login/';
+}
+
 class Login extends Component {
 
     constructor(props) {
@@ -17,7 +25,7 @@ class Login extends Component {
     mySubmitHandler = (event) => {
         event.preventDefault();
         // const API = 'http://localhost:1339/login/';
-        const API = 'https://trading-api.listrom.me/login/';
+        // const API = 'https://trading-api.listrom.me/login/';
         let payload={
             "email":this.state.email,
             "password":this.state.pass
@@ -35,7 +43,8 @@ class Login extends Component {
             if (data.data) {
                 this.setState({loginmsg: `<span class="okmsg">${data.data.message}</span>`});
                 auth.token = data.data.token;
-                // console.log(auth.token);
+                auth.email = this.state.email;
+                // console.log(auth.email);
             }
             if (data.errors) {
                 this.setState({loginmsg: `<span class="errmsg">${data.errors.detail}`});
@@ -54,6 +63,7 @@ class Login extends Component {
 
     myLogoutHandler = () =>  {
         auth.token = "";
+        auth.email = "";
         this.setState({loginmsg: ''});
         this.props.history.push('/login');
     }

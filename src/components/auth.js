@@ -1,6 +1,7 @@
 
 var auth = {
-    token: ""
+    token: "",
+    email: ""
 };
 
 export default auth;

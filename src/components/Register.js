@@ -1,5 +1,13 @@
 import React, {Component} from 'react';
 
+let API;
+
+if (process.env.NODE_ENV === 'development') {
+    API = 'http://localhost:1339/register/';
+} else {
+    API = 'https://trading-api.listrom.me/register/';
+}
+
 class Register extends Component {
 
     constructor(props) {
@@ -12,7 +20,7 @@ class Register extends Component {
 
     mySubmitHandler = (event) => {
         event.preventDefault();
-        const API = 'https://trading-api.listrom.me/register/';
+        // const API = 'https://trading-api.listrom.me/register/';
         let payload={
             "email":this.state.email,
             "password":this.state.pass
