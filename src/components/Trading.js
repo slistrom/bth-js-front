@@ -34,8 +34,13 @@ if (process.env.NODE_ENV === 'development') {
     API = 'https://trading-api.listrom.me/';
 }
 
-let socket = io.connect("http://localhost:1339");
-// let socket = io.connect("https://trading-api.listrom.me");
+let socket;
+
+if (process.env.NODE_ENV === 'development') {
+    socket = io.connect("http://localhost:1339");
+} else {
+    socket = io.connect("https://trading-api.listrom.me");
+}
 
 socket.on('connect', () => {
     console.log("Connected");
