@@ -15,6 +15,7 @@ class Register extends Component {
         this.state = {
             email: '',
             pass: '',
+            registermsg: '',
         };
     }
 
@@ -34,9 +35,12 @@ class Register extends Component {
         })
             .then(response => response.json())
             .then(data => {
-                console.log('Success:', data);
-                this.props.history.push('/login');
-
+                console.log('Response:', data);
+                if (data.errors) {
+                    this.setState({registermsg: `<span class="errmsg">${data.errors.detail}`});
+                } else {
+                    this.props.history.push('/login');
+                }
             })
             .catch((error) => {
                 console.error('Error:', error);
@@ -52,6 +56,7 @@ class Register extends Component {
     render() {
         return (
             <main>
+                <p dangerouslySetInnerHTML={{__html: this.state.registermsg}}></p>
                 <h3>User registration</h3>
                 <form onSubmit={this.mySubmitHandler}>
                     <p>Enter your email:</p>

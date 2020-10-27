@@ -80,13 +80,14 @@ class Account extends Component {
         if(!auth.token) {
             return (
                 <main>
+                    <h3>Account information</h3>
                     <p>You need to log in to view your account.</p>
                 </main>
             );
         } else {
             return (
                 <main>
-                    <h3>Your account information:</h3>
+                    <h3>Account information:</h3>
                     <p>Account balance: {this.state.balance} SEK</p>
                     <form onSubmit={this.mySubmitHandler}>
                         <p>Increase your balance:</p>

@@ -23,7 +23,7 @@ function App() {
             <div className="content">
                 <div className="menu leftmenu">
                     <p><Link to="/">Home</Link></p>
-                    <p><Link to="/trading">Buy stuff</Link></p>
+                    <p><Link to="/trading">Trading</Link></p>
                     <p><Link to="/account">My account</Link></p>
                     <p><Link to="/login">Login</Link></p>
                 </div>
