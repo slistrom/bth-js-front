@@ -66,7 +66,7 @@ test.describe("Trading frontend", function() {
     // Usecase 2
     test.it("Test go to Trading", function(done) {
         // try use nav link
-        goToNavLink("Buy stuff");
+        goToNavLink("Trading");
 
         matchUrl("trading" );
         assertH3("Trading");
@@ -81,6 +81,28 @@ test.describe("Trading frontend", function() {
 
         matchUrl("login");
         assertH3("Login");
+
+        done();
+    });
+
+    // Usecase 4
+    test.it("Test footer background color", function(done) {
+        browser.findElement(By.className("footer")).then(function(displayElement) {
+            displayElement.getCssValue("background-color").then(function(bgColor) {
+                assert.equal(bgColor, "rgb(253, 176, 64)");
+            });
+        });
+
+        done();
+    });
+
+    // Usecase 5
+    test.it("Test go to register page via login page", function(done) {
+        goToNavLink("Login");
+        goToNavLink("Register new user");
+
+        matchUrl("register/");
+        assertH3("User registration");
 
         done();
     });
